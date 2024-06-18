@@ -7,7 +7,7 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     if (access("Makefile", F_OK) == 0) {
         remove("Makefile");
     }
-
+    
     FILE *makefile = fopen("Makefile", "w");
     if (makefile == NULL) {
         fprintf(stderr, "Error creating Makefile");
@@ -39,7 +39,7 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     }
     fprintf(makefile, "all:\n");
     if (strcmp(lib, "none") != 0) {
-        fprintf(makefile, "\t$(CC) -o $(BUILD)/$(OUT) $(SRC)/$(IN) $(LIB) $(CCFLAGS)\n");
+        fprintf(makefile, "\t$(CC) -o $(BUILD)/$(OUT) $(SRC)/$(IN) $(SRC)/$(LIB) $(CCFLAGS)\n");
     } else {
         fprintf(makefile, "\t$(CC) -o $(BUILD)/$(OUT) $(SRC)/$(IN) $(CCFLAGS)\n");
     }
@@ -47,7 +47,7 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     fprintf(makefile, "\t./$(BUILD)/$(OUT)\n");
 
     fprintf(makefile, "clean:\n");
-    fprintf(makefile, "\tmv $(SRC)/$(IN) .\n");
+    fprintf(makefile, "\tmv $(SRC)/* .\n");
     fprintf(makefile, "\trm -rf $(BUILD) && rm -rf $(SRC)\n");
 
     fprintf(makefile, "wipe:\n");
