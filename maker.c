@@ -15,7 +15,7 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     }
     
     fprintf(makefile, "CC=%s\n", comp);
-    fprintf(makefile, "CCFLAGS=-Wall -Wextra -ffreestanding\n");
+    fprintf(makefile, "CCFLAGS=-Wall -Wextra\n");
     fprintf(makefile, "IN=%s\n", princip);
     fprintf(makefile, "OUT=%s\n", out);
     if (strcmp(lib, "none") != 0) 
@@ -26,14 +26,16 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     fprintf(makefile, "fresh:\n");
     fprintf(makefile, "\tmkdir -p $(BUILD)\n");
     if (strcmp(lib, "none") != 0) {
-        fprintf(makefile, "\tmkdir -p $(SRC) && touch $(SRC)/$(IN) && touch $(SRC)/$(LIB)\n");
+        fprintf(makefile, "\tmkdir -p $(SRC)\n");
+        fprintf(makefile, "touch $(SRC)/$(IN) && touch $(SRC)/$(LIB)\n");
     } else {
         fprintf(makefile, "\tmkdir -p $(SRC) && touch $(SRC)/$(IN)\n");
     }
     fprintf(makefile, "start:\n");
     fprintf(makefile, "\tmkdir -p $(BUILD)\n");
     if (strcmp(lib, "none") != 0) {
-        fprintf(makefile, "\tmkdir -p $(SRC) && mv $(IN) $(SRC) && mv $(LIB) $(SRC)\n");
+        fprintf(makefile, "\tmkdir -p $(SRC)\n");
+        fprintf(makefile, "\tmv $(IN) $(SRC) && mv $(LIB) $(SRC)\n");
     } else {
         fprintf(makefile, "\tmkdir -p $(SRC) && mv $(IN) $(SRC)\n");
     }
