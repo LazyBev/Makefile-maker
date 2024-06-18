@@ -1,6 +1,6 @@
 # Maded with maker.c
 CC=gcc
-CCFLAGS=-Wall -Wextra -ffreestanding
+CCFLAGS=-Wall -Wextra
 IN=maker.c
 OUT=maker
 SRC=src
@@ -9,7 +9,7 @@ BUILD=build
 fresh:
 	mkdir -p $(BUILD)
 	mkdir -p $(SRC) && touch $(SRC)/$(IN)
-correct:
+start:
 	mkdir -p $(BUILD)
 	mkdir -p $(SRC) && mv $(IN) $(SRC)
 all:
@@ -17,7 +17,8 @@ all:
 run:
 	./$(BUILD)/$(OUT)
 clean:
-	mv $(SRC)/$(IN) .
+	mv $(SRC)/* .
 	rm -rf $(BUILD) && rm -rf $(SRC)
 wipe:
 	rm -rf $(BUILD) && rm -rf $(SRC)
+
