@@ -30,7 +30,7 @@ void make(const char *comp, const char *princip, const char *lib, const char *ou
     } else {
         fprintf(makefile, "\tmkdir -p $(SRC) && touch $(SRC)/$(IN)\n");
     }
-    fprintf(makefile, "correct:\n");
+    fprintf(makefile, "start:\n");
     fprintf(makefile, "\tmkdir -p $(BUILD)\n");
     if (strcmp(lib, "none") != 0) {
         fprintf(makefile, "\tmkdir -p $(SRC) && mv $(IN) $(SRC) && mv $(LIB) $(SRC)\n");
